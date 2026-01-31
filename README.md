@@ -4,7 +4,7 @@ download the [latest release](https://github.com/ishaan-awasthi/maccordion/relea
 
 ### how to play
 
-* hold your mac sideways/vertically in your lap
+* hold your mac sideways+vertically in your lap
 * aka hold it like an accordion, with the keyboard toward your right hand
 * use your keyboard to select pitches
 * _lightly_ push your screen to give it "air" and play the music
