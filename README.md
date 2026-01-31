@@ -19,11 +19,11 @@ download the [latest release](https://github.com/ishaan-awasthi/maccordion/relea
 * bass: (C-A#): z to rshift
 
 ### special keys
-* esc: quit Maccordion :(
-
 * tab: sustain/release any current notes
 
 * caps lock: mute all keys
+
+* esc: quit Maccordion :(
 
 ### tips:
 * 1/q/a/z all play C, so the keyboard is pretty aligned!
