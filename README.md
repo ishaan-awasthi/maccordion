@@ -30,6 +30,6 @@ download the [latest release](https://github.com/ishaan-awasthi/maccordion/relea
 * each minor chord is intuitively right behind its parallel major. for example, look at A (Cmaj) and Q (Cmin)
 * stop pumping mid-note for fade-outs; in general, pump speed = volume
 * you can play multiple notes simultaneously (this works best for bass/treble, not so much chords)
-* A→K→P→H is a standard IV-vi-IV in C major, and a good place to start with Maccordion; try playing the chords with your thumb and a melody with your fingers!
+* A→K→P→H is a standard I-IV-vi-IV in C major, and a good place to start with Maccordion; try playing the chords with your thumb and a treble melody with your fingers!
 
 ## thank you, and happy playing!
