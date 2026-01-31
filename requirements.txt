@@ -1,0 +1,6 @@
+pyaudio
+numpy
+pynput
+pybooklid
+threading
+time
