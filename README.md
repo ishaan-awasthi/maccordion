@@ -1,5 +1,7 @@
 # Maccordion - turn your mac into an accordion! (kinda)
 
+download the [latest release](https://github.com/ishaan-awasthi/maccordion/releases/tag/v1.0.0) to get started
+
 ### how to play
 
 * hold your mac sideways/vertically in your lap
