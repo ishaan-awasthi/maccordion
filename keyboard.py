@@ -51,7 +51,7 @@ MINOR_CHORD_ROOTS = {
     ']': 71,          # B4 minor
 }
 
-# Melody/Treble: 1 through Delete (C6-C7, MIDI 84-96) - 13 notes (full octave C to C)
+# Melody/Treble: 1 through Backspace (C6-C7, MIDI 84-96) - 13 notes (full octave C to C)
 TREBLE_KEYS = {
     '1': 84,          # C6
     '2': 85,          # C#6
@@ -65,7 +65,8 @@ TREBLE_KEYS = {
     '0': 93,          # A6
     '-': 94,          # A#6
     '=': 95,          # B6
-    'delete': 96,     # C7 (higher C)
+    'backspace': 96,  # C7 (higher C)
+    # hooooly bug btw, mac has the key labeled delete but it's actually key.backspace. i wasted like an hour tryna figure out ts lmao
 }
 
 def get_major_chord(root_midi):
