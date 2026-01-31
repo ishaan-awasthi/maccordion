@@ -65,8 +65,7 @@ TREBLE_KEYS = {
     '0': 93,          # A6
     '-': 94,          # A#6
     '=': 95,          # B6
-    'backspace': 96,  # C7 (higher C)
-    # hooooly bug btw, mac has the key labeled delete but it's actually key.backspace. i wasted like an hour tryna figure out ts lmao
+    'backspace': 96,  # C7 (higher C) - Mac's delete key is backspace in pynput
 }
 
 def get_major_chord(root_midi):
@@ -92,6 +91,7 @@ class KeyboardHandler:
         self.synth = synth
         self.currently_pressed = set()
         self.key_frequencies = {}  # {key_char: [freq1, freq2, freq3]}
+        self.sustained_keys = {}  # {key_char: [freq1, freq2, freq3]} - keys held by sustain
         self.listener = None
         self.muted = False
         
@@ -116,6 +116,26 @@ class KeyboardHandler:
             self.muted = not self.muted
             status = "MUTED" if self.muted else "UNMUTED"
             print(f"\n{status}\n")
+            return
+        
+        # TAB toggles sustain for currently playing notes
+        if key_char == 'tab':
+            if self.sustained_keys:
+                # Clear all sustained notes
+                for key, freqs in self.sustained_keys.items():
+                    for freq in freqs:
+                        self.synth.note_off(freq)
+                    print(f"UNSUSTAIN: {key}")
+                self.sustained_keys.clear()
+                print("All sustains released\n")
+            else:
+                # Sustain all currently playing notes
+                for key, freqs in self.key_frequencies.items():
+                    if key not in self.sustained_keys:
+                        self.sustained_keys[key] = freqs
+                        print(f"SUSTAIN: {key}")
+                if self.sustained_keys:
+                    print("Notes sustained (press Tab to release)\n")
             return
         
         if self.muted:
@@ -166,13 +186,20 @@ class KeyboardHandler:
         if key_char in self.currently_pressed:
             self.currently_pressed.remove(key_char)
             
-            # Turn off all frequencies associated with this key
+            # Only turn off if NOT sustained
             if key_char in self.key_frequencies:
-                for freq in self.key_frequencies[key_char]:
-                    self.synth.note_off(freq)
-                del self.key_frequencies[key_char]
-                if not self.muted:
-                    print(f"OFF: {key_char}")
+                if key_char not in self.sustained_keys:
+                    # Normal release - turn off the note
+                    for freq in self.key_frequencies[key_char]:
+                        self.synth.note_off(freq)
+                    del self.key_frequencies[key_char]
+                    if not self.muted:
+                        print(f"OFF: {key_char}")
+                else:
+                    # Key is sustained - remove from active but keep in sustained
+                    del self.key_frequencies[key_char]
+                    if not self.muted:
+                        print(f"OFF (sustained): {key_char}")
     
     def start(self):
         self.listener = Listener(
